@@ -1,0 +1,213 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CocheDestacado from '../components/CocheDestacado';
+import { cochesDestacados } from '../data/coches';
+import RankingMensual from "../components/RankingMensual";
+---
+
+<Layout
+  title="Redline Cars | Coches deportivos y de altas prestaciones"
+  description="Explora fichas detalladas de coches deportivos, berlinas potentes y SUVs de alto rendimiento."
+>
+  <!-- HERO -->
+  <section class="mx-auto max-w-6xl px-4 pt-10 pb-8 sm:px-6 md:pt-14">
+    <div class="grid gap-8 md:grid-cols-[3fr,2fr] md:items-center">
+      <!-- Texto principal -->
+      <div data-animate data-animate-delay="0">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-red-400">
+          Racing • Performance • Pasión
+        </p>
+        <h1 class="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+          Coches deportivos, sin filtro.
+        </h1>
+        <p class="mt-4 max-w-xl text-sm text-slate-300 sm:text-base">
+          RACINPAGE es tu punto de referencia para descubrir coches deportivos, berlinas de altas
+          prestaciones y SUVs con alma de circuito. Fichas claras, datos reales y comparativas directas.
+        </p>
+
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          <a
+            href="/coches"
+            class="rounded-full border border-red-500 bg-red-600 px-5 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-md transition hover:bg-red-500 hover:border-red-400"
+          >
+            Ver coches destacados
+          </a>
+          <a
+            href="/comparador"
+            class="rounded-full border border-slate-600 px-5 py-2 text-xs font-semibold uppercase tracking-wide text-slate-100 hover:border-red-400 hover:text-red-300 transition"
+          >
+            Abrir comparador
+          </a>
+        </div>
+
+        <!-- mini “stats” -->
+        <dl class="mt-6 grid gap-4 text-xs text-slate-300 sm:grid-cols-3">
+          <div>
+            <dt class="text-slate-400">Coches analizados</dt>
+            <dd class="text-lg font-semibold text-white">+120</dd>
+          </div>
+          <div>
+            <dt class="text-slate-400">0-100 km/h</dt>
+            <dd class="text-lg font-semibold text-white">&lt; 4s en la mayoría</dd>
+          </div>
+          <div>
+            <dt class="text-slate-400">Foco</dt>
+            <dd class="text-lg font-semibold text-white">Prestaciones reales</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Bloque “hero card” -->
+      <div class="relative" data-animate data-animate-delay="200">
+        <div
+          class="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-tr from-red-700/60 via-red-500/10 to-transparent blur-2xl"
+        ></div>
+        <div class="relative rounded-3xl border border-red-600/60 bg-neutral-950/90 p-4 shadow-xl sm:p-5">
+          <div class="mb-3 flex items-center justify-between text-xs text-slate-300">
+            <span class="rounded-full bg-red-600/20 px-3 py-1 font-semibold uppercase tracking-wide text-red-300">
+              Destacado del mes
+            </span>
+            <span>0-100 km/h en 2,1s</span>
+          </div>
+          <div class="overflow-hidden rounded-2xl border border-slate-700/70">
+            <img
+              src="https://imgs.search.brave.com/0AruK83DnixxyOvJ8yDCCiGJCQ4U9Dt8Nb64UFlBHHM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDk4ODE4/MTYuanBn"
+              alt="Coche deportivo rojo"
+              class="h-44 w-full object-cover sm:h-56"
+              loading="lazy"
+            />
+          </div>
+          <div class="mt-4 flex items-center justify-between">
+            <div>
+              <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Tesla</p>
+              <p class="text-lg font-semibold text-white">Model S Plaid</p>
+              <p class="text-xs text-slate-400">1020 CV · Tracción total · Eléctrico</p>
+            </div>
+            <div class="text-right text-xs">
+              <p class="text-slate-400">Desde</p>
+              <p class="text-base font-semibold text-red-400">115.000 €</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN COCHES DESTACADOS -->
+  <section class="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:py-10">
+    <header class="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between" data-animate>
+      <div>
+        <h2 class="text-xl font-semibold text-white sm:text-2xl">Coches destacados</h2>
+        <p class="mt-1 text-sm text-slate-300">
+          Una selección rápida de modelos que combinan prestaciones, imagen y sensaciones al volante.
+        </p>
+      </div>
+      <p class="text-xs text-slate-400 max-w-sm">
+        * Todos los datos de potencia, aceleración y precio son orientativos y pueden variar según mercado
+        y configuración.
+      </p>
+    </header>
+
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {cochesDestacados.map((coche, index) => (
+        <div data-animate data-animate-delay={index * 80}>
+          <CocheDestacado
+            nombre={coche.nombre}
+            marca={coche.marca}
+            potencia={coche.potencia}
+            tipo={coche.tipo}
+            precioDesde={coche.precioDesde}
+            imagen={coche.imagen}
+            etiquetaAmbiental={coche.etiquetaAmbiental}
+            href={`/coches/${coche.id}`}  <!-- luego crearemos estas páginas -->
+          />
+        </div>
+      ))}
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN CATEGORÍAS -->
+  <section class="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:py-10">
+    <header class="mb-5" data-animate>
+      <h2 class="text-xl font-semibold text-white sm:text-2xl">Encuentra tu estilo</h2>
+      <p class="mt-1 text-sm text-slate-300">
+        No todos los coches deportivos buscan lo mismo. Elige el enfoque que mejor encaje contigo.
+      </p>
+    </header>
+
+    <div class="grid gap-4 md:grid-cols-4">
+      <article class="rounded-2xl border border-slate-700 bg-neutral-950/80 p-4" data-animate>
+        <h3 class="text-sm font-semibold text-white">Coupés puros</h3>
+        <p class="mt-1 text-xs text-slate-300">
+          Dos puertas, tracción trasera en muchos casos y el objetivo claro de disfrutar en cada curva.
+        </p>
+      </article>
+      <article class="rounded-2xl border border-slate-700 bg-neutral-950/80 p-4" data-animate data-animate-delay="80">
+        <h3 class="text-sm font-semibold text-white">Berlinas deportivas</h3>
+        <p class="mt-1 text-xs text-slate-300">
+          Espacio y confort sin renunciar a motores potentes y chasis puestos a punto en circuito.
+        </p>
+      </article>
+      <article class="rounded-2xl border border-slate-700 bg-neutral-950/80 p-4" data-animate data-animate-delay="160">
+        <h3 class="text-sm font-semibold text-white">SUV de alto rendimiento</h3>
+        <p class="mt-1 text-xs text-slate-300">
+          Posición de conducción elevada con cifras de aceleración de superdeportivo.
+        </p>
+      </article>
+      <article class="rounded-2xl border border-slate-700 bg-neutral-950/80 p-4" data-animate data-animate-delay="240">
+        <h3 class="text-sm font-semibold text-white">Eléctricos de altas prestaciones</h3>
+        <p class="mt-1 text-xs text-slate-300">
+          Par instantáneo, silencio y prestaciones que ponen en apuros a muchos deportivos clásicos.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- SECCIÓN CONSEJOS / INFO -->
+  <section class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+    <div class="grid gap-8 md:grid-cols-[3fr,2fr] md:items-start">
+      <div data-animate>
+        <h2 class="text-xl font-semibold text-white sm:text-2xl">
+          ¿Cómo elegir tu próximo coche deportivo?
+        </h2>
+        <p class="mt-3 text-sm text-slate-300">
+          Más allá de la ficha técnica, un coche deportivo tiene que encajar con tu día a día. Aquí tienes algunos puntos
+          clave que solemos valorar antes de recomendar un modelo.
+        </p>
+
+        <ul class="mt-4 space-y-3 text-sm text-slate-300">
+          <li>
+            <span class="font-semibold text-red-400">Uso real: </span>
+            ¿Vas a usarlo a diario, sólo fines de semana o incluso en tandas de circuito?
+          </li>
+          <li>
+            <span class="font-semibold text-red-400">Presupuesto total: </span>
+            no sólo pienses en el precio de compra; seguro, mantenimiento y neumáticos marcan la diferencia.
+          </li>
+          <li>
+            <span class="font-semibold text-red-400">Sensaciones frente a cifras: </span>
+            a veces un coche menos potente transmite más y es más aprovechable en carretera abierta.
+          </li>
+          <li>
+            <span class="font-semibold text-red-400">Espacio y practicidad: </span>
+            ¿Necesitas cuatro plazas reales, maletero amplio o te basta con algo muy radical?
+          </li>
+        </ul>
+      </div>
+
+      
+    </div>
+  </section>
+    <section class="mx-auto max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
+  <div
+    class="rounded-3xl border border-red-600/70 bg-gradient-to-r from-red-700/30 via-black to-black px-6 py-8 sm:px-10 sm:py-10"
+    data-animate
+  >
+    <RankingMensual client:load />
+  </div>
+</section>
+  
+    </div>
+  </section>
+</Layout>

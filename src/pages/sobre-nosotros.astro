@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Sobre nosotros | Redline Cars"
+  description="Conoce el proyecto Redline Cars, nuestra filosofía y cómo entendemos los coches deportivos."
+>
+  <!-- HERO / INTRO -->
+  <section class="mx-auto max-w-6xl px-4 pt-10 pb-8 sm:px-6 lg:px-8">
+    <header class="space-y-4 md:space-y-5" data-animate>
+      <p class="text-xs font-semibold uppercase tracking-[0.3em] text-red-400">
+        Sobre nosotros
+      </p>
+      <h1 class="text-3xl font-bold text-white md:text-4xl">
+        Un proyecto creado por y para amantes de los coches.
+      </h1>
+      <p class="max-w-3xl text-sm text-slate-300 md:text-base">
+        RACINGPAGE de la obsesión y pasión por los coches deportivos, las preparaciones y las sensaciones
+        al volante. Nuestro objetivo es ofrecer información clara, honesta y centrada en lo que de verdad
+        importa a la hora de elegir un coche con alma. Además de ser una página informativa con distintos coches para todo aquel amante del motor.
+      </p>
+    </header>
+  </section>
+
+  <!-- BLOQUE “QUIÉNES SOMOS / QUÉ HACEMOS” -->
+  <section class="mx-auto max-w-6xl px-4 pb-10 sm:px-6 lg:px-8">
+    <div class="grid gap-8 md:grid-cols-[3fr,2fr] md:items-start">
+      <div class="space-y-5" data-animate>
+        <h2 class="text-xl font-semibold text-white md:text-2xl">
+          Qué es exactamente RACINGPAGE
+        </h2>
+        <p class="text-sm text-slate-300 md:text-base">
+          No somos un concesionario ni una revista tradicional. Redline Cars es un proyecto digital
+          independiente donde recopilamos, organizamos y presentamos información sobre coches deportivos
+          y de altas prestaciones de manera sencilla y visual.
+        </p>
+        <p class="text-sm text-slate-300 md:text-base">
+          Queremos que puedas comparar modelos, entender mejor sus puntos fuertes y débiles, y tener
+          una idea realista de qué encaja contigo antes de dar el siguiente paso: ir a ver el coche,
+          probarlo o hablar con un profesional.
+        </p>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div
+            class="rounded-2xl border border-slate-700 bg-neutral-950/80 p-4"
+            data-animate
+            data-animate-delay="80"
+          >
+            <p class="text-xs font-semibold uppercase tracking-[0.25em] text-red-400">
+              Foco
+            </p>
+            <p class="mt-2 text-sm text-slate-200">
+              Presentación de coches deportivos, información y una página dedicada a los coches deportivos.
+            </p>
+          </div>
+          <div
+            class="rounded-2xl border border-slate-700 bg-neutral-950/80 p-4"
+            data-animate
+            data-animate-delay="160"
+          >
+            <p class="text-xs font-semibold uppercase tracking-[0.25em] text-red-400">
+              Estilo
+            </p>
+            <p class="mt-2 text-sm text-slate-200">
+              Diseño limpio, claro, responsive en todos los dispositivos y con un toque racing: rojo, blanco y negro como en los mejores boxes.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <aside
+        class="rounded-2xl border border-red-600/60 bg-neutral-950/90 p-5 shadow-xl"
+        data-animate
+        data-animate-delay="200"
+      >
+        <h3 class="text-sm font-semibold text-white">
+          Lo que puedes esperar de este proyecto
+        </h3>
+        <ul class="mt-3 space-y-2 text-sm text-slate-300">
+          <li>Listados claros de modelos deportivos y de altas prestaciones.</li>
+          <li>Comparaciones rápidas para entender diferencias de un vistazo.</li>
+          <li>Información enfocada a aficionados, no sólo a números de catálogo.</li>
+          <li>Actualizaciones constantes con nuevos modelos y secciones.</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section class="mx-auto max-w-6xl px-4 pb-10 sm:px-6 lg:px-8">
+    <h2
+      class="text-xl font-semibold text-white md:text-2xl mb-5"
+      data-animate
+    >
+      Nuestros valores
+    </h2>
+    <div class="grid gap-4 md:grid-cols-3">
+      <article
+        class="rounded-2xl border border-slate-700 bg-neutral-950/80 p-4"
+        data-animate
+      >
+        <h3 class="text-sm font-semibold text-white">Pasión real por los coches</h3>
+        <p class="mt-2 text-sm text-slate-300">
+          El proyecto está pensado desde la perspectiva de quien disfruta un tramo de montaña, una tanda
+          en circuito o simplemente una buena carretera al atardecer.
+        </p>
+      </article>
+      <article
+        class="rounded-2xl border border-slate-700 bg-neutral-950/80 p-4"
+        data-animate
+        data-animate-delay="80"
+      >
+        <h3 class="text-sm font-semibold text-white">Claridad ante todo</h3>
+        <p class="mt-2 text-sm text-slate-300">
+          Nada de fichas interminables sin contexto. Datos clave, explicados de forma directa y sin humo.
+        </p>
+      </article>
+      <article
+        class="rounded-2xl border border-slate-700 bg-neutral-950/80 p-4"
+        data-animate
+        data-animate-delay="160"
+      >
+        <h3 class="text-sm font-semibold text-white">Evolución constante</h3>
+        <p class="mt-2 text-sm text-slate-300">
+          Nuevas secciones, comparadores más avanzados y, en el futuro, herramientas para guardar y
+          compartir tus listas de coches favoritos.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- PEQUEÑA “HISTORIA” / ROADMAP -->
+  <section class="mx-auto max-w-6xl px-4 pb-12 sm:px-6 lg:px-8">
+    <div
+      class="rounded-3xl border border-red-600/70 bg-gradient-to-r from-red-700/40 via-black to-black px-5 py-6 sm:px-8 sm:py-8"
+      data-animate
+    >
+      <h2 class="text-lg font-semibold text-white sm:text-xl">
+        Hacia dónde va Redline Cars
+      </h2>
+      <p class="mt-2 text-sm text-slate-200">
+        Ahora mismo estás viendo las primeras versiones del proyecto: listado de modelos, coches
+        destacados y un comparador básico. La idea es ir mucho más allá.
+      </p>
+      <ul class="mt-4 grid gap-3 text-sm text-slate-100 sm:grid-cols-2">
+        <li>➜ Fichas detalladas con más datos técnicos y sensaciones al volante.</li>
+        <li>➜ Comparador avanzado con 0-100, peso, consumos y tipo de tracción.</li>
+        <li>➜ Posibilidad de guardar listas de favoritos y compartirlas.</li>
+        <li>➜ Contenido editorial: guías, consejos y curiosidades del mundo del motor.</li>
+      </ul>
+      <p class="mt-4 text-xs text-slate-300">
+        Si te gustan los coches tanto como a nosotros, esta web está pensada para ti.
+      </p>
+    </div>
+  </section>
+</Layout>

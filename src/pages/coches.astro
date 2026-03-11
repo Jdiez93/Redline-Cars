@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ListadoCochesFiltrable from '../components/ListadoCochesFiltrable';
+import { cochesDestacados } from '../data/coches';
+---
+
+<Layout
+  title="Coches | Redline Cars"
+  description="Listado de coches deportivos, berlinas de altas prestaciones y SUVs de alto rendimiento."
+>
+  <!-- CABECERA -->
+  <section class="mx-auto max-w-6xl px-4 pt-10 pb-6 sm:px-6 lg:px-8">
+    <header class="mb-6 md:mb-8 space-y-3" data-animate>
+      <p class="text-xs font-semibold uppercase tracking-[0.3em] text-red-400">
+        Catálogo RACINGPAGE
+      </p>
+      <h1 class="text-3xl font-bold text-white md:text-4xl">
+        Coches de altas prestaciones
+      </h1>
+      <p class="max-w-3xl text-sm text-slate-300 md:text-base">
+        Usa los filtros para acotar por tipo de motor, etiqueta ambiental, potencia y precio máximo.
+        La idea es que puedas encontrar en segundos los modelos que de verdad encajan contigo.
+      </p>
+    </header>
+  </section>
+
+  <!-- LISTADO FILTRABLE -->
+  <section class="mx-auto max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
+    <ListadoCochesFiltrable coches={cochesDestacados} client:load />
+  </section>
+</Layout>

@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+/* Animaciones básicas de scroll */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
+}
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* glow racing ganador */
+@keyframes redlineGlow {
+  0% {
+    box-shadow: 0 0 25px rgba(250,204,21,0.35);
+  }
+  50% {
+    box-shadow: 0 0 45px rgba(250,204,21,0.7);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(250,204,21,0.35);
+  }
+}
+
+.glow-racing {
+  animation: redlineGlow 3s ease-in-out infinite;
+}
+
+
+/* humo racing */
+
+@keyframes racingSmoke {
+  0% {
+    transform: translateX(-20px) translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(20px) translateY(-10px);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(-20px) translateY(0);
+    opacity: 0.35;
+  }
+}
+
+.smoke-effect {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,0.08) 0%,
+    rgba(255,255,255,0.03) 40%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  animation: racingSmoke 6s ease-in-out infinite;
+}
+
+/* entrada tipo aceleración */
+@keyframes winnerRushIn {
+  0% {
+    opacity: 0;
+    transform: translateX(70px) scale(0.96);
+    filter: blur(10px);
+  }
+  45% {
+    opacity: 1;
+    transform: translateX(-8px) scale(1.02);
+    filter: blur(2px);
+  }
+  70% {
+    transform: translateX(4px) scale(1.01);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1.05);
+    filter: blur(0);
+  }
+}
+
+.winner-rush-in {
+  animation: winnerRushIn 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-racing,
+  .smoke-effect,
+  .winner-rush-in {
+    animation: none !important;
+  }
+}

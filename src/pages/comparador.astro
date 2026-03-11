@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ComparadorCoches from '../components/ComparadorCoches';
+import { cochesDestacados } from '../data/coches';
+---
+
+<Layout
+  title="Comparador | Redline Cars"
+  description="Compara coches deportivos por tipo de motor, potencia, peso, 0-100 km/h, tipo de tracción, consumo y etiqueta ambiental."
+>
+  <section class="mx-auto max-w-6xl px-4 pt-10 pb-10 sm:px-6 lg:px-8">
+    <header class="mb-8 md:mb-10 space-y-3" data-animate>
+      <div class="inline-flex items-center gap-2 rounded-full border border-red-600/50 bg-black/80 px-3 py-1">
+        <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+        <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-red-300">
+          Herramienta
+        </span>
+        <span class="text-[11px] text-slate-400">Comparador de modelos</span>
+      </div>
+
+      <h1 class="text-3xl font-bold text-white md:text-4xl">
+        Compara tus coches favoritos con detalle.
+      </h1>
+      <p class="max-w-3xl text-sm text-slate-300 md:text-base">
+        Selecciona hasta tres modelos y revísalos en paralelo: tipo de motor, potencia, peso, 0–100 km/h,
+        tipo de tracción, consumo y etiqueta ambiental. Una visión global antes de decidir qué modelo
+        quieres estudiar a fondo.
+      </p>
+    </header>
+
+    <div class="grid gap-8 md:grid-cols-[3fr,2fr] md:items-start">
+      <!-- Herramienta de comparación -->
+      <div
+        class="rounded-3xl border border-red-600/60 bg-neutral-950/90 p-4 sm:p-6 md:p-7 shadow-xl"
+        data-animate
+        data-animate-delay="120"
+      >
+        <ComparadorCoches coches={cochesDestacados} client:load />
+      </div>
+
+      <!-- Explicación / tips -->
+      <aside
+        class="rounded-3xl border border-slate-700 bg-neutral-950/80 p-4 sm:p-5 md:p-6 text-sm text-slate-300 space-y-4"
+        data-animate
+        data-animate-delay="220"
+      >
+        <div>
+          <h2 class="text-sm font-semibold text-white">
+            Cómo sacarle partido al comparador
+          </h2>
+          <p class="mt-1 text-xs text-slate-300">
+            Esta herramienta está pensada para tomar decisiones rápidas. No sustituye a una prueba ni a
+            una ficha completa, pero te ayuda a filtrar de forma muy visual.
+          </p>
+        </div>
+
+        <ul class="space-y-2 text-xs text-slate-300">
+          <li>
+            ▸ Empieza filtrando por <span class="font-semibold text-red-300">tipo de motor</span> para
+            comparar coches con filosofías similares.
+          </li>
+          <li>
+            ▸ Usa el buscador para centrarte en una marca o modelo y evitar listas largas en los
+            desplegables.
+          </li>
+          <li>
+            ▸ Fíjate en la combinación{' '}
+            <span class="font-semibold text-red-300">potencia / 0–100 / peso</span>: ahí está gran parte
+            del carácter del coche.
+          </li>
+          <li>
+            ▸ Revisa <span class="font-semibold text-emerald-300">consumo</span> y{' '}
+            <span class="font-semibold text-sky-300">etiqueta ambiental</span> si vas a usarlo a diario
+            en ciudad.
+          </li>
+        </ul>
+
+        <div class="border-t border-slate-800 pt-4 text-xs text-slate-400">
+          <p>
+            
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>
