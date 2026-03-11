@@ -1,0 +1,286 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { cochesDestacados } from '../../data/coches';
+
+export async function getStaticPaths() {
+  return cochesDestacados.map((coche) => ({
+    params: { id: coche.id },
+    props: { coche },
+  }));
+}
+
+const { coche } = Astro.props;
+
+const formatoPrecio = new Intl.NumberFormat('es-ES', {
+  style: 'currency',
+  currency: 'EUR',
+  maximumFractionDigits: 0,
+}).format(coche.precioDesde);
+
+const consumoTexto =
+  coche.tipo === 'Eléctrico'
+    ? `${coche.consumo.toFixed(1)} kWh/100 km`
+    : `${coche.consumo.toFixed(1)} l/100 km`;
+
+const traccionTexto =
+  coche.traccion === 'RWD'
+    ? 'Tracción trasera'
+    : coche.traccion === 'FWD'
+      ? 'Tracción delantera'
+      : 'Tracción total';
+
+const etiquetaEstilos = {
+  C: 'border-amber-500/40 bg-amber-500/15 text-amber-300',
+  ECO: 'border-emerald-500/40 bg-emerald-500/15 text-emerald-300',
+  CERO: 'border-sky-500/40 bg-sky-500/15 text-sky-300',
+};
+
+const relacionados = cochesDestacados
+  .filter((item) => item.id !== coche.id && item.tipo === coche.tipo)
+  .slice(0, 3);
+---
+
+<Layout
+  title={`${coche.marca} ${coche.nombre} | Redline Cars`}
+  description={`Ficha técnica del ${coche.marca} ${coche.nombre}: potencia, precio, 0-100 km/h, consumo, peso, tracción y más.`}
+>
+  <!-- HERO -->
+  <section class="mx-auto max-w-6xl px-4 pt-10 pb-8 sm:px-6 lg:px-8">
+    <div class="grid gap-8 lg:grid-cols-[1.2fr,0.8fr] lg:items-center">
+      <div data-animate>
+        <p class="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-red-400">
+          Ficha de modelo
+        </p>
+
+        <div class="mb-4 flex flex-wrap items-center gap-3">
+          <span class="text-sm uppercase tracking-[0.22em] text-slate-400">
+            {coche.marca}
+          </span>
+
+          <span
+            class:list={[
+              'rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-wide',
+              etiquetaEstilos[coche.etiquetaAmbiental],
+            ]}
+          >
+            {coche.etiquetaAmbiental}
+          </span>
+
+          <span class="rounded-full border border-red-500/40 bg-red-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-red-300">
+            {coche.tipo}
+          </span>
+        </div>
+
+        <h1 class="text-3xl font-bold text-white md:text-4xl xl:text-5xl">
+          {coche.nombre}
+        </h1>
+
+        <p class="mt-4 max-w-2xl text-sm text-slate-300 md:text-base">
+          El {coche.marca} {coche.nombre} es un modelo pensado para quienes buscan prestaciones,
+          presencia y sensaciones al volante. En esta ficha puedes ver sus datos clave de forma clara
+          y rápida antes de compararlo con otros modelos del catálogo.
+        </p>
+
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          <a
+            href="/comparador"
+            class="rounded-full border border-red-500 bg-red-600 px-5 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-md transition hover:bg-red-500"
+          >
+            Compararlo ahora
+          </a>
+
+          <a
+            href="/coches"
+            class="rounded-full border border-slate-700 bg-neutral-950/80 px-5 py-2 text-xs font-semibold uppercase tracking-wide text-slate-100 transition hover:border-red-500 hover:text-red-300"
+          >
+            Volver al catálogo
+          </a>
+        </div>
+      </div>
+
+      <div class="relative" data-animate data-animate-delay="120">
+        <div class="pointer-events-none absolute -inset-2 rounded-[2rem] bg-gradient-to-tr from-red-700/40 via-red-500/10 to-transparent blur-2xl"></div>
+        <div class="relative overflow-hidden rounded-[2rem] border border-slate-800 bg-neutral-950/90 shadow-2xl">
+          <img
+            src={coche.imagen}
+            alt={`${coche.marca} ${coche.nombre}`}
+            class="h-[260px] w-full object-cover sm:h-[340px] lg:h-[420px]"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUMEN RÁPIDO -->
+  <section class="mx-auto max-w-6xl px-4 pb-8 sm:px-6 lg:px-8">
+    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <article class="rounded-2xl border border-slate-800 bg-neutral-950/80 p-4" data-animate>
+        <p class="text-[11px] uppercase tracking-[0.22em] text-slate-500">Potencia</p>
+        <p class="mt-2 text-2xl font-semibold text-white">{coche.potencia} CV</p>
+        <p class="mt-1 text-xs text-slate-400">Prestaciones y empuje disponibles.</p>
+      </article>
+
+      <article class="rounded-2xl border border-slate-800 bg-neutral-950/80 p-4" data-animate data-animate-delay="80">
+        <p class="text-[11px] uppercase tracking-[0.22em] text-slate-500">0-100 km/h</p>
+        <p class="mt-2 text-2xl font-semibold text-white">{coche.ceroCien.toFixed(1)} s</p>
+        <p class="mt-1 text-xs text-slate-400">Referencia rápida de aceleración.</p>
+      </article>
+
+      <article class="rounded-2xl border border-slate-800 bg-neutral-950/80 p-4" data-animate data-animate-delay="160">
+        <p class="text-[11px] uppercase tracking-[0.22em] text-slate-500">Precio desde</p>
+        <p class="mt-2 text-2xl font-semibold text-red-400">{formatoPrecio}</p>
+        <p class="mt-1 text-xs text-slate-400">Puede variar según mercado y versión.</p>
+      </article>
+
+      <article class="rounded-2xl border border-slate-800 bg-neutral-950/80 p-4" data-animate data-animate-delay="240">
+        <p class="text-[11px] uppercase tracking-[0.22em] text-slate-500">Tracción</p>
+        <p class="mt-2 text-2xl font-semibold text-white">{coche.traccion}</p>
+        <p class="mt-1 text-xs text-slate-400">{traccionTexto}</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- DATOS TÉCNICOS + DESCRIPCIÓN -->
+  <section class="mx-auto max-w-6xl px-4 pb-10 sm:px-6 lg:px-8">
+    <div class="grid gap-8 lg:grid-cols-[0.95fr,1.05fr]">
+      <aside
+        class="rounded-3xl border border-red-600/40 bg-neutral-950/90 p-5 shadow-xl"
+        data-animate
+      >
+        <h2 class="text-lg font-semibold text-white sm:text-xl">
+          Especificaciones técnicas
+        </h2>
+
+        <dl class="mt-5 space-y-4">
+          <div class="flex items-center justify-between gap-4 border-b border-slate-800 pb-3">
+            <dt class="text-sm text-slate-400">Marca</dt>
+            <dd class="text-sm font-medium text-white">{coche.marca}</dd>
+          </div>
+
+          <div class="flex items-center justify-between gap-4 border-b border-slate-800 pb-3">
+            <dt class="text-sm text-slate-400">Modelo</dt>
+            <dd class="text-sm font-medium text-white">{coche.nombre}</dd>
+          </div>
+
+          <div class="flex items-center justify-between gap-4 border-b border-slate-800 pb-3">
+            <dt class="text-sm text-slate-400">Tipo de motor</dt>
+            <dd class="text-sm font-medium text-white">{coche.tipo}</dd>
+          </div>
+
+          <div class="flex items-center justify-between gap-4 border-b border-slate-800 pb-3">
+            <dt class="text-sm text-slate-400">Potencia</dt>
+            <dd class="text-sm font-medium text-white">{coche.potencia} CV</dd>
+          </div>
+
+          <div class="flex items-center justify-between gap-4 border-b border-slate-800 pb-3">
+            <dt class="text-sm text-slate-400">0-100 km/h</dt>
+            <dd class="text-sm font-medium text-white">{coche.ceroCien.toFixed(1)} s</dd>
+          </div>
+
+          <div class="flex items-center justify-between gap-4 border-b border-slate-800 pb-3">
+            <dt class="text-sm text-slate-400">Peso</dt>
+            <dd class="text-sm font-medium text-white">
+              {coche.pesoKg.toLocaleString('es-ES')} kg
+            </dd>
+          </div>
+
+          <div class="flex items-center justify-between gap-4 border-b border-slate-800 pb-3">
+            <dt class="text-sm text-slate-400">Tracción</dt>
+            <dd class="text-sm font-medium text-white">{traccionTexto}</dd>
+          </div>
+
+          <div class="flex items-center justify-between gap-4 border-b border-slate-800 pb-3">
+            <dt class="text-sm text-slate-400">Consumo mixto aprox.</dt>
+            <dd class="text-sm font-medium text-white">{consumoTexto}</dd>
+          </div>
+
+          <div class="flex items-center justify-between gap-4">
+            <dt class="text-sm text-slate-400">Etiqueta ambiental</dt>
+            <dd class="text-sm font-medium text-white">{coche.etiquetaAmbiental}</dd>
+          </div>
+        </dl>
+      </aside>
+
+      <div class="space-y-6" data-animate data-animate-delay="120">
+        <section class="rounded-3xl border border-slate-800 bg-neutral-950/80 p-5">
+          <h2 class="text-lg font-semibold text-white sm:text-xl">
+            Qué transmite este modelo
+          </h2>
+          <p class="mt-3 text-sm leading-7 text-slate-300">
+            El {coche.marca} {coche.nombre} destaca por su combinación de potencia, imagen y capacidad
+            para ofrecer una experiencia diferente según el uso que se le quiera dar. Puede atraer tanto
+            a quien busca sensaciones deportivas como a quien valora diseño, tecnología o presencia.
+          </p>
+          <p class="mt-3 text-sm leading-7 text-slate-300">
+            Su posicionamiento dentro del catálogo lo convierte en una opción interesante para comparar
+            frente a otros modelos del mismo segmento, especialmente si te importa el equilibrio entre
+            rendimiento, aceleración, tracción y coste de acceso.
+          </p>
+        </section>
+
+        <section class="grid gap-4 sm:grid-cols-2">
+          <article class="rounded-2xl border border-slate-800 bg-neutral-950/80 p-4">
+            <h3 class="text-sm font-semibold text-white">Lo más destacado</h3>
+            <ul class="mt-3 space-y-2 text-sm text-slate-300">
+              <li>• {coche.potencia} CV de potencia máxima.</li>
+              <li>• Aceleración 0-100 km/h en {coche.ceroCien.toFixed(1)} s.</li>
+              <li>• Configuración {traccionTexto.toLowerCase()}.</li>
+            </ul>
+          </article>
+
+          <article class="rounded-2xl border border-slate-800 bg-neutral-950/80 p-4">
+            <h3 class="text-sm font-semibold text-white">A tener en cuenta</h3>
+            <ul class="mt-3 space-y-2 text-sm text-slate-300">
+              <li>• Precio de acceso desde {formatoPrecio}.</li>
+              <li>• Peso declarado de {coche.pesoKg.toLocaleString('es-ES')} kg.</li>
+              <li>• Consumo orientativo: {consumoTexto}.</li>
+            </ul>
+          </article>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODELOS RELACIONADOS -->
+  {relacionados.length > 0 && (
+    <section class="mx-auto max-w-6xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="mb-5" data-animate>
+        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-red-400">
+          Relacionados
+        </p>
+        <h2 class="mt-2 text-2xl font-semibold text-white">
+          Más modelos de tipo {coche.tipo.toLowerCase()}
+        </h2>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-3">
+        {relacionados.map((item, index) => (
+          <a
+            href={`/coches/${item.id}`}
+            class="group overflow-hidden rounded-3xl border border-slate-800 bg-neutral-950/80 transition hover:-translate-y-1 hover:border-red-500/60"
+            data-animate
+            data-animate-delay={index * 90}
+          >
+            <img
+              src={item.imagen}
+              alt={`${item.marca} ${item.nombre}`}
+              class="h-44 w-full object-cover transition duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+
+            <div class="p-4">
+              <p class="text-[11px] uppercase tracking-[0.2em] text-slate-500">
+                {item.marca}
+              </p>
+              <h3 class="mt-1 text-lg font-semibold text-white">{item.nombre}</h3>
+              <p class="mt-1 text-sm text-slate-300">
+                {item.potencia} CV · {item.tipo}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+</Layout>
