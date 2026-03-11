@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MapaConcesionarios from '../components/MapaConcesionarios';
+import { concesionarios } from '../data/concesionarios';
+---
+
+<Layout
+  title="Concesionarios | Redline Cars"
+  description="Encuentra concesionarios de marcas deportivas y premium en el mapa."
+>
+  <section class="mx-auto max-w-6xl px-4 pt-10 pb-8 sm:px-6 lg:px-8">
+    <header class="mb-8 space-y-3" data-animate>
+      <p class="text-xs font-semibold uppercase tracking-[0.3em] text-red-400">
+        Red oficial
+      </p>
+      <h1 class="text-3xl font-bold text-white md:text-4xl">
+        Encuentra concesionarios por marca y ciudad
+      </h1>
+      <p class="max-w-3xl text-sm text-slate-300 md:text-base">
+        Explora concesionarios de marcas del catálogo, filtra por ciudad o usa tu ubicación
+        para ver cuáles te quedan más cerca. Pensado para complementar la parte informativa
+        de la web con una herramienta realmente útil.
+      </p>
+    </header>
+
+    <MapaConcesionarios concesionarios={concesionarios} client:only="react" />
+  </section>
+</Layout>

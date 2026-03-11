@@ -14,8 +14,14 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "astro": "^5.16.3",
+    "leaflet": "^1.9.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-leaflet": "^5.0.0",
+    "simple-icons": "^16.11.0",
     "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.21"
   }
 }
