@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SimuladorAceleracion from '../components/SimuladorAceleracion';
+import { cochesDestacados } from '../data/coches';
+---
+
+<Layout
+  title="Simulador de aceleración | Redline Cars"
+  description="Compara dos coches en una simulación visual de aceleración 0-100 km/h."
+>
+  <section class="mx-auto max-w-6xl px-4 pt-10 pb-12 sm:px-6 lg:px-8">
+    <header class="mb-8 space-y-3" data-animate>
+      <p class="text-xs font-semibold uppercase tracking-[0.3em] text-red-400">
+        Simulador
+      </p>
+      <h1 class="text-3xl font-bold text-white md:text-4xl">
+        Simulador de aceleración 0-100 km/h
+      </h1>
+      <p class="max-w-3xl text-sm text-slate-300 md:text-base">
+        Elige dos modelos y compara su salida de forma visual. La simulación usa el
+        dato de aceleración 0-100 km/h para representar el avance de cada coche en pista.
+      </p>
+    </header>
+
+    <div
+      class="rounded-3xl border border-red-600/50 bg-neutral-950/90 p-4 shadow-xl sm:p-6 md:p-8"
+      data-animate
+      data-animate-delay="120"
+    >
+      <SimuladorAceleracion coches={cochesDestacados} client:load />
+    </div>
+  </section>
+</Layout>
