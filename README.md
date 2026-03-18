@@ -1,43 +1,34 @@
-# Astro Starter Kit: Minimal
+# Redline Cars
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Una plataforma web de alto rendimiento dedicada a la visualización y gestión de catálogos automotrices. Construida con un enfoque en la velocidad, el SEO y una experiencia de usuario fluida.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+**Live Demo:** [https://redline-cars.vercel.app/](https://redline-cars.vercel.app/)
 
-## 🚀 Project Structure
+## 🛠️ Stack Tecnológico
 
-Inside of your Astro project, you'll see the following folders and files:
+Este proyecto utiliza herramientas de vanguardia para maximizar la eficiencia en el desarrollo y la optimización en el cliente:
+
+* **Astro:** Framework principal para lograr una carga ultrarrápida mediante islas de interactividad.
+* **React:** Biblioteca para la construcción de componentes de interfaz dinámicos y reutilizables.
+* **TypeScript:** Tipado estático para garantizar la robustez y escalabilidad del código.
+* **Tailwind CSS:** Framework de utilidades para un diseño moderno, responsivo y mantenible.
+* **HTML5:** Estructura semántica avanzada.
+
+## ✨ Características Principales
+
+* **Zero JS por defecto:** Aprovecha la arquitectura de Astro para enviar el mínimo JavaScript necesario al navegador.
+* **Arquitectura de Islas:** Los componentes interactivos de React solo se hidratan cuando son visibles o necesarios.
+* **Diseño Adaptive:** Interfaz totalmente optimizada para dispositivos móviles, tablets y desktop.
+* **Performance:** Puntuaciones altas en Core Web Vitals gracias al renderizado estático.
+* **Type Safe:** Desarrollo seguro mediante interfaces y tipos personalizados de TypeScript.
+
+## 📂 Estructura del Proyecto
 
 ```text
-/
-├── public/
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+│   ├── components/    # Componentes React y Astro (.astro, .tsx)
+│   ├── layouts/       # Plantillas base para las páginas
+│   ├── pages/         # Enrutamiento basado en archivos
+│   └── styles/        # Configuraciones globales de Tailwind
+├── public/            # Activos estáticos (imágenes, fuentes)
+└── astro.config.mjs   # Configuración de Astro e integraciones
